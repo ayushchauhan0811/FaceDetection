@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     @Override
     public void onCameraViewStarted(int width, int height) {
         rgba = new Mat(height,width, CvType.CV_8UC4);
-        gray = new Mat(height,width, CvType.CV_8UC1);
+        //gray = new Mat(height,width, CvType.CV_8UC1);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         rgba = inputFrame.rgba();
 
-        OpencvNativeClass.convertGray(rgba.getNativeObjAddr(),gray.getNativeObjAddr());
-
-        return gray;
+        //OpencvNativeClass.convertGray(rgba.getNativeObjAddr(),gray.getNativeObjAddr());
+        OpencvNativeClass.faceDetection(rgba.getNativeObjAddr());
+        return rgba;
     }
 
     @Override
